@@ -1,0 +1,10 @@
+{
+  "license": "BSD 3-Clause",
+  "private": true,
+  "devDependencies": {
+    "lerna": "3.22.1"
+  },
+  "workspaces": [
+    "lessons/**/*"
+  ]
+}

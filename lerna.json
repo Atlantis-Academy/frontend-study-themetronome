@@ -1,0 +1,16 @@
+{
+  "packages": [
+    "lessons/**/*",
+    "practice/**/*"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "independent",
+  "command": {
+    "version": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "exact": true
+    }
+  }
+}
