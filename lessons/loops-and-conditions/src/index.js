@@ -19,4 +19,14 @@ for (let i = 0; i < 2; i++) {
   }
 }
 
+if (personalMovieDB.count < 10) {
+  console.log("Вы довольно редко смотрите фильмы");
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+  console.log("Вы среднестатистический зритель");
+} else if (personalMovieDB.count >= 30) {
+  console.log("Да вы киноман!");
+} else {
+  console.log("Ошибка!");
+}
+
 console.log(personalMovieDB);
