@@ -49,4 +49,18 @@ function viewerGrade() {
 
 viewerGrade();
 
-console.log(personalMovieDB);
+function showMyDB() {
+  if (personalMovieDB.private === false) {
+    console.log(personalMovieDB);
+  }
+}
+
+showMyDB();
+
+function writeYourGenres() {
+  for (let i = 1; i <= 3; i++) {
+    personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр №${i}?`);
+  }
+}
+
+writeYourGenres();
