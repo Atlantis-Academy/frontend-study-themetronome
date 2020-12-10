@@ -15,3 +15,13 @@ function removeAdvertisements() {
     item.remove();
   });
 }
+
+function changeGenreCategory(genreCategory) {
+  const genre = document.querySelector(".promo__genre");
+  genre.textContent = genreCategory;
+}
+
+function changeMovieBackground(bgImg) {
+  const poster = document.querySelector(".promo__bg");
+  poster.style.backgroundImage = `url("../src/assets/images/${bgImg}")`;
+}
