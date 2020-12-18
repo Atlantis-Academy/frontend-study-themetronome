@@ -33,4 +33,57 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  const countdownData = "2020-12-31";
+
+  function getTimeRemaining(endtime) {
+    const totalMilliseconds = Date.parse(endtime) - Date.parse(new Date());
+    const days = Math.floor(totalMilliseconds / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((totalMilliseconds / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((totalMilliseconds / 1000 / 60) % 60);
+    const seconds = Math.floor((totalMilliseconds / 1000) % 60);
+
+    return {
+      total: totalMilliseconds,
+      days: days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds,
+    };
+  }
+
+  function insertZeroIntoTimer(num) {
+    if (num >= 0 && num < 10) {
+      return `0${num}`;
+    } else {
+      return num;
+    }
+  }
+
+  function setTimer(selector, endtime) {
+    const timer = document.querySelector(selector);
+    const days = timer.querySelector("#days");
+    const hours = timer.querySelector("#hours");
+    const minutes = timer.querySelector("#minutes");
+    const seconds = timer.querySelector("#seconds");
+
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    updateTimer();
+
+    function updateTimer() {
+      const timeNow = getTimeRemaining(endtime);
+
+      days.innerHTML = insertZeroIntoTimer(timeNow.days);
+      hours.innerHTML = insertZeroIntoTimer(timeNow.hours);
+      minutes.innerHTML = insertZeroIntoTimer(timeNow.minutes);
+      seconds.innerHTML = insertZeroIntoTimer(timeNow.seconds);
+
+      if (timeNow.total <= 0) {
+        clearInterval(timerInterval);
+      }
+    }
+  }
+
+  setTimer(".timer", countdownData);
 });
