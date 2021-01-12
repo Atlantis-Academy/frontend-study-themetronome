@@ -1,8 +1,8 @@
 let numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
 
-const totalWatchedMoviesCheck = () => {
+const totalWatchedMoviesCheck = (): void => {
   while (
-    numberOfFilms === "" ||
+    numberOfFilms === undefined ||
     numberOfFilms == null ||
     isNaN(numberOfFilms)
   ) {
@@ -20,12 +20,18 @@ const personalMovieDB = {
   private: false,
 };
 
-function lastSeenMovieRate() {
+function lastSeenMovieRate(): void {
   for (let i = 0; i < 2; i++) {
-    const a = prompt("Один из последних просмотренных фильмов?", "");
-    const b = prompt("Какую оценку вы бы ему поставили?", "");
+    const a: string = prompt("Один из последних просмотренных фильмов?", "");
+    const b: number = +prompt("Какую оценку вы бы ему поставили?", "");
 
-    if (a != null && b != null && a !== "" && b !== "" && a.length < 50) {
+    if (
+      a != null &&
+      b != null &&
+      a !== "" &&
+      b !== undefined &&
+      a.length < 50
+    ) {
       personalMovieDB.movies[a] = b;
     } else {
       i--;
@@ -35,7 +41,7 @@ function lastSeenMovieRate() {
 
 lastSeenMovieRate();
 
-function viewerGrade() {
+function viewerGrade(): void {
   if (personalMovieDB.count < 10) {
     console.log("Вы смотрите фильмы довольно редко");
   } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
@@ -49,7 +55,7 @@ function viewerGrade() {
 
 viewerGrade();
 
-function showMyDB() {
+function showMyDB(): void {
   if (personalMovieDB.private === false) {
     console.log(personalMovieDB);
   }
@@ -57,7 +63,7 @@ function showMyDB() {
 
 showMyDB();
 
-function writeYourGenres() {
+function writeYourGenres(): void {
   for (let i = 1; i <= 3; i++) {
     personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр №${i}?`);
   }
