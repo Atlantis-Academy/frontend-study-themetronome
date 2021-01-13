@@ -1,5 +1,9 @@
 {
   "name": "@practice/healthy-food-delivery",
   "version": "0.0.0",
-  "license": "BSD-3-Clause"
+  "license": "BSD-3-Clause",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  }
 }
