@@ -4,6 +4,7 @@
   "license": "BSD 3-Clause",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "eslint"
   }
 }
