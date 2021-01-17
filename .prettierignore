@@ -1,0 +1,13 @@
+.c9
+.git
+node_modules
+coverage
+dist
+lib
+.next
+**/**/dist/*
+**/**/lib/*
+**/**/templates/*.yaml
+**/templates/*.yaml
+**/types/**
+.terraform

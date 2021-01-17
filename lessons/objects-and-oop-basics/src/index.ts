@@ -5,65 +5,57 @@ const personalMovieDB = {
   genres: [],
   private: false,
   totalWatchedMoviesCheck: (): void => {
-    personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '')
 
     while (personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
-      personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+      personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '')
     }
   },
   lastSeenMovieRate(): void {
     for (let i = 0; i < 2; i++) {
-      const a: string = prompt('Один из последних просмотренных фильмов?', '');
-      const b: number = +prompt('Какую оценку вы бы ему поставили?', '');
+      const a: string = prompt('Один из последних просмотренных фильмов?', '')
+      const b: number = +prompt('Какую оценку вы бы ему поставили?', '')
 
-      if (
-        a != null
-        && b != null
-        && a !== ''
-        && b !== undefined
-        && a.length < 50
-      ) {
-        personalMovieDB.movies[a] = b;
+      if (a != null && b != null && a !== '' && b !== undefined && a.length < 50) {
+        personalMovieDB.movies[a] = b
       } else {
-        i--;
+        i--
       }
     }
   },
   viewerGrade(): void {
     if (personalMovieDB.count < 10) {
-      console.log('Вы смотрите фильмы довольно редко');
+      console.log('Вы смотрите фильмы довольно редко')
     } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-      console.log('Обычный кинозритель');
+      console.log('Обычный кинозритель')
     } else if (personalMovieDB.count >= 30) {
-      console.log('Да вы киноман!');
+      console.log('Да вы киноман!')
     } else {
-      console.log('Ошибка!');
+      console.log('Ошибка!')
     }
   },
   showMyDB(): void {
     if (personalMovieDB.private === false) {
-      console.log(personalMovieDB);
+      console.log(personalMovieDB)
     }
   },
   toggleVisibleMyDB(): void {
-    !personalMovieDB.private;
+    !personalMovieDB.private
   },
   writeYourGenres(): void {
     for (let i = 1; i <= 3; i++) {
-      const genre: string = prompt(
-        `Ваш любимый жанр под номером ${i}?`,
-      ).toLowerCase();
+      const genre: string = prompt(`Ваш любимый жанр под номером ${i}?`).toLowerCase()
 
       if (genre === '' || genre == null) {
-        console.log('Вы ввели некорректные данные или не ввели их вовсе');
-        i--;
+        console.log('Вы ввели некорректные данные или не ввели их вовсе')
+        i--
       } else {
-        personalMovieDB.genres[i - 1] = genre;
+        personalMovieDB.genres[i - 1] = genre
       }
     }
 
     personalMovieDB.genres.forEach((item: string, i: number) => {
-      console.log(`Любимый жанр ${i + 1} - это ${item}`);
-    });
+      console.log(`Любимый жанр ${i + 1} - это ${item}`)
+    })
   },
-};
+}
