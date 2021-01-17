@@ -1,27 +1,27 @@
-document.addEventListener("DOMContentLoaded", (): void => {
+document.addEventListener('DOMContentLoaded', (): void => {
   const movieDB = {
     movies: [
-      "Логан",
-      "Лига справедливости",
-      "Человек паук",
-      "Шрек",
-      "Сорвиголова",
+      'Логан',
+      'Лига справедливости',
+      'Человек паук',
+      'Шрек',
+      'Сорвиголова',
     ],
   };
 
-  const ads: NodeListOf<Element> = document.querySelectorAll(".promo__adv img");
-  const genre: NodeListOf<Element> = document.querySelectorAll(".promo__genre");
-  const poster: HTMLElement = document.querySelector(".promo__bg");
+  const ads: NodeListOf<Element> = document.querySelectorAll('.promo__adv img');
+  const genre: NodeListOf<Element> = document.querySelectorAll('.promo__genre');
+  const poster: HTMLElement = document.querySelector('.promo__bg');
   const moviesList: HTMLElement = document.querySelector(
-    ".promo__interactive-list",
+    '.promo__interactive-list',
   );
-  const addForm: HTMLFormElement = document.querySelector("form.add");
-  const addInput: HTMLInputElement = document.querySelector(".adding__input");
+  const addForm: HTMLFormElement = document.querySelector('form.add');
+  const addInput: HTMLInputElement = document.querySelector('.adding__input');
   const checkbox: HTMLInputElement = document.querySelector(
     '[type="checkbox"]',
   );
 
-  addForm.addEventListener("submit", (e) => {
+  addForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     let newMovie: string = addInput.value;
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
         newMovie = `${newMovie.substring(0, 22)}...`;
       }
       if (favorite) {
-        console.log("Добавляем новый фильм");
+        console.log('Добавляем новый фильм');
       }
 
       movieDB.movies.push(newMovie);
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", (): void => {
   movieDB.movies.sort();
 
   function createMoviesList(films: string[], parent: HTMLElement): void {
-    parent.innerHTML = "";
+    parent.innerHTML = '';
     sortArr(films);
 
     films.forEach((name: string, i: number) => {
@@ -59,9 +59,9 @@ document.addEventListener("DOMContentLoaded", (): void => {
     });
 
     document
-      .querySelectorAll(".delete")
+      .querySelectorAll('.delete')
       .forEach((btn: HTMLButtonElement, i: number): void => {
-        btn.addEventListener("click", (): void => {
+        btn.addEventListener('click', (): void => {
           btn.parentElement.remove();
           movieDB.movies.splice(i, 1);
           createMoviesList(films, parent);
