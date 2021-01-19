@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tabsParent.addEventListener('click', (e): void => {
     if (e.target && (e.target as HTMLElement).classList.contains('tabheader__item')) {
       tabs.forEach((item: HTMLElement, index: number) => {
-        if (e.target == item) {
+        if (e.target === item) {
           makeTabContentHidden()
           makeTabContentVisible(index)
         }
