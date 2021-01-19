@@ -40,7 +40,7 @@ const personalMovieDB = {
     }
   },
   toggleVisibleMyDB(): void {
-    !personalMovieDB.private
+    personalMovieDB.private = !personalMovieDB.private
   },
   writeYourGenres(): void {
     for (let i = 1; i <= 3; i++) {

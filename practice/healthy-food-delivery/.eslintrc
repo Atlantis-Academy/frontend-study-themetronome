@@ -1,3 +1,7 @@
 {
-  "extends": "../../.eslintrc.json"
+  "extends": "../../.eslintrc.json",
+  "rules": {
+    "no-use-before-define": 0,
+    "no-undef": 0
+  }
 }
