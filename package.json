@@ -1,6 +1,9 @@
 {
   "license": "BSD 3-Clause",
   "private": true,
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint --fix './**/*.{ts,js}'"
+  },
   "devDependencies": {
     "@atlantis-lab/tsconfig": "^0.1.2",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
