@@ -2,7 +2,7 @@ const movieDB = {
   movies: ['Логан', 'Лига справедливости', 'Человек паук', 'Шрек', 'Сорвиголова'],
 }
 
-function removeAdvertisements(): void {
+function removeAdvertisements() {
   const ads: NodeListOf<Element> = document.querySelectorAll('.promo__adv img')
 
   ads.forEach((item: HTMLElement) => {
@@ -10,17 +10,17 @@ function removeAdvertisements(): void {
   })
 }
 
-function changeGenreCategory(genreCategory: string): void {
+function changeGenreCategory(genreCategory: string) {
   const genre: HTMLElement = document.querySelector('.promo__genre')
   genre.textContent = genreCategory
 }
 
-function changeMovieBackground(bgImg: string): void {
+function changeMovieBackground(bgImg: string) {
   const poster: HTMLElement = document.querySelector('.promo__bg')
   poster.style.backgroundImage = `url("../src/assets/images/${bgImg}")`
 }
 
-function getMoviesListFromDB(): void {
+function getMoviesListFromDB() {
   const moviesList: HTMLElement = document.querySelector('.promo__interactive-list')
   moviesList.innerHTML = ''
   movieDB.movies.sort()
