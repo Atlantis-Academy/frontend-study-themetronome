@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (): void => {
+document.addEventListener('DOMContentLoaded', () => {
   const movieDB = {
     movies: ['Логан', 'Лига справедливости', 'Человек паук', 'Шрек', 'Сорвиголова'],
   }
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (): void => {
   const addInput: HTMLInputElement = document.querySelector('.adding__input')
   const checkbox: HTMLInputElement = document.querySelector('[type="checkbox"]')
 
-  addForm.addEventListener('submit', (e) => {
+  addForm.addEventListener('submit', (e: Event) => {
     e.preventDefault()
 
     let newMovie: string = addInput.value
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
       movieDB.movies.push(newMovie)
       sortArr(movieDB.movies)
-
       createMoviesList(movieDB.movies, moviesList)
     }
 
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', (): void => {
 
   movieDB.movies.sort()
 
-  function createMoviesList(films: string[], parent: HTMLElement): void {
+  function createMoviesList(films: string[], parent: HTMLElement) {
     parent.innerHTML = ''
     sortArr(films)
 
@@ -48,8 +47,8 @@ document.addEventListener('DOMContentLoaded', (): void => {
     `
     })
 
-    document.querySelectorAll('.delete').forEach((btn: HTMLButtonElement, i: number): void => {
-      btn.addEventListener('click', (): void => {
+    document.querySelectorAll('.delete').forEach((btn: HTMLButtonElement, i: number) => {
+      btn.addEventListener('click', () => {
         btn.parentElement.remove()
         movieDB.movies.splice(i, 1)
         createMoviesList(films, parent)
@@ -57,19 +56,19 @@ document.addEventListener('DOMContentLoaded', (): void => {
     })
   }
 
-  const removeAdvertisements = (arr: NodeListOf<Element>): void => {
+  const removeAdvertisements = (arr: NodeListOf<Element>) => {
     arr.forEach((item: HTMLElement) => {
       item.remove()
     })
   }
 
-  const changeGenreCategory = (name: string): void => {
+  const changeGenreCategory = (name: string) => {
     genre.forEach((item: HTMLElement) => {
       item.textContent = name
     })
   }
 
-  const changeMovieBackground = (bgImg: string): void => {
+  const changeMovieBackground = (bgImg: string) => {
     poster.style.backgroundImage = `url("../src/assets/images/${bgImg}")`
   }
 
