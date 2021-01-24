@@ -9,11 +9,17 @@ const personalMovieDB = {
 }
 
 for (let i = 0; i < 2; i++) {
-  const q: string = prompt('Один из последних просмотренных Вами фильмов?', '')
-  const w: number = +prompt('Какую оценку вы бы ему поставили?', '')
+  const filmName: string = prompt('Один из последних просмотренных Вами фильмов?', '')
+  const filmGrade: number = +prompt('Какую оценку вы бы ему поставили?', '')
 
-  if (q != null && w != null && q !== '' && w !== undefined && q.length < 50) {
-    personalMovieDB.movies[q] = w
+  if (
+    filmName != null &&
+    filmGrade != null &&
+    filmName !== '' &&
+    filmGrade !== undefined &&
+    filmName.length < 50
+  ) {
+    personalMovieDB.movies[filmName] = filmGrade
   } else {
     i--
   }

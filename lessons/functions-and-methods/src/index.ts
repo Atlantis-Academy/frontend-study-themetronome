@@ -1,12 +1,4 @@
-let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '')
-
-const totalWatchedMoviesCheck = (): void => {
-  while (numberOfFilms === undefined || numberOfFilms == null || isNaN(numberOfFilms)) {
-    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '')
-  }
-}
-
-totalWatchedMoviesCheck()
+let numberOfFilms: number = +prompt('Сколько фильмов вы уже посмотрели?', '')
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -16,13 +8,27 @@ const personalMovieDB = {
   private: false,
 }
 
-function lastSeenMovieRate(): void {
-  for (let i = 0; i < 2; i++) {
-    const a: string = prompt('Один из последних просмотренных фильмов?', '')
-    const b: number = +prompt('Какую оценку вы бы ему поставили?', '')
+const totalWatchedMoviesCheck = () => {
+  while (numberOfFilms === undefined || numberOfFilms == null || Number.isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '')
+  }
+}
 
-    if (a != null && b != null && a !== '' && b !== undefined && a.length < 50) {
-      personalMovieDB.movies[a] = b
+totalWatchedMoviesCheck()
+
+function lastSeenMovieRate() {
+  for (let i = 0; i < 2; i++) {
+    const filmName: string = prompt('Один из последних просмотренных фильмов?', '')
+    const filmGrade: number = +prompt('Какую оценку вы бы ему поставили?', '')
+
+    if (
+      filmName != null &&
+      filmGrade != null &&
+      filmName !== '' &&
+      filmGrade !== undefined &&
+      filmName.length < 50
+    ) {
+      personalMovieDB.movies[filmName] = filmGrade
     } else {
       i--
     }
@@ -31,7 +37,7 @@ function lastSeenMovieRate(): void {
 
 lastSeenMovieRate()
 
-function viewerGrade(): void {
+function viewerGrade() {
   if (personalMovieDB.count < 10) {
     console.log('Вы смотрите фильмы довольно редко')
   } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
@@ -45,16 +51,12 @@ function viewerGrade(): void {
 
 viewerGrade()
 
-function showMyDB(): void {
-  if (personalMovieDB.private === false) {
-    console.log(personalMovieDB)
-  }
-}
+const showMyDB = () => (personalMovieDB.private === false ? console.log(personalMovieDB) : null)
 
 showMyDB()
 
-function writeYourGenres(): void {
-  for (let i = 1; i <= 3; i++) {
+function writeYourGenres() {
+  for (let i: number = 1; i <= 3; i++) {
     personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр №${i}?`)
   }
 }

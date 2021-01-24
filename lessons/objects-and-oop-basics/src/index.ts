@@ -4,26 +4,34 @@ const personalMovieDB = {
   actors: {},
   genres: [],
   private: false,
-  totalWatchedMoviesCheck: (): void => {
+  totalWatchedMoviesCheck: () => {
     personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '')
 
-    while (personalMovieDB.count == null || isNaN(personalMovieDB.count)) {
+    while (personalMovieDB.count == null || Number.isNaN(personalMovieDB.count)) {
       personalMovieDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '')
     }
   },
-  lastSeenMovieRate(): void {
-    for (let i = 0; i < 2; i++) {
-      const a: string = prompt('Один из последних просмотренных фильмов?', '')
-      const b: number = +prompt('Какую оценку вы бы ему поставили?', '')
 
-      if (a != null && b != null && a !== '' && b !== undefined && a.length < 50) {
-        personalMovieDB.movies[a] = b
+  lastSeenMovieRate() {
+    for (let i: number = 0; i < 2; i++) {
+      const filmName: string = prompt('Один из последних просмотренных фильмов?', '')
+      const filmGrade: number = +prompt('Какую оценку вы бы ему поставили?', '')
+
+      if (
+        filmName !== null &&
+        filmGrade !== null &&
+        filmName !== '' &&
+        filmGrade !== undefined &&
+        filmName.length < 50
+      ) {
+        personalMovieDB.movies[filmName] = filmGrade
       } else {
         i--
       }
     }
   },
-  viewerGrade(): void {
+
+  viewerGrade() {
     if (personalMovieDB.count < 10) {
       console.log('Вы смотрите фильмы довольно редко')
     } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
@@ -34,16 +42,15 @@ const personalMovieDB = {
       console.log('Ошибка!')
     }
   },
-  showMyDB(): void {
-    if (personalMovieDB.private === false) {
-      console.log(personalMovieDB)
-    }
-  },
-  toggleVisibleMyDB(): void {
+
+  showMyDB: () => (personalMovieDB.private === false ? console.log(personalMovieDB) : null),
+
+  toggleVisibleMyDB() {
     personalMovieDB.private = !personalMovieDB.private
   },
-  writeYourGenres(): void {
-    for (let i = 1; i <= 3; i++) {
+
+  writeYourGenres() {
+    for (let i: number = 1; i <= 3; i++) {
       const genre: string = prompt(`Ваш любимый жанр под номером ${i}?`).toLowerCase()
 
       if (genre === '' || genre == null) {

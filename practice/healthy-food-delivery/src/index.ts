@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabsContent: NodeListOf<Element> = document.querySelectorAll('.tabcontent')
   const tabsParent: HTMLElement = document.querySelector('.tabheader__items')
 
-  function makeTabContentHidden(): void {
+  function makeTabContentHidden() {
     tabsContent.forEach((item: HTMLElement) => {
       item.classList.add('hide')
       item.classList.remove('show', 'fade')
     })
 
-    tabs.forEach((item: HTMLElement): void => {
+    tabs.forEach((item: HTMLElement) => {
       item.classList.remove('tabheader__item_active')
     })
   }
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   makeTabContentHidden()
   makeTabContentVisible()
 
-  tabsParent.addEventListener('click', (e): void => {
+  tabsParent.addEventListener('click', (e: Event) => {
     if (e.target && (e.target as HTMLElement).classList.contains('tabheader__item')) {
       tabs.forEach((item: HTMLElement, index: number) => {
         if (e.target === item) {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  const countdownData: string = '2020-12-31'
+  const countdownData: string = '2021-07-13'
 
   function getTimeRemaining(endtime: string) {
     const totalMilliseconds: number = Date.parse(endtime) - Date.parse(new Date().toString())
@@ -52,26 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function insertZeroIntoTimer(num: number) {
-    if (num >= 0 && num < 10) {
-      return `0${num}`
-    }
-    return num
+  function insertZeroIntoTimer(num: number): string {
+    return num >= 0 && num < 10 ? `0${num}` : ((num as unknown) as string)
   }
 
-  function setTimer(selector: any, endtime: any) {
-    const timer: any = document.querySelector(selector)
-    const days: any = timer.querySelector('#days')
-    const hours: any = timer.querySelector('#hours')
-    const minutes: any = timer.querySelector('#minutes')
-    const seconds: any = timer.querySelector('#seconds')
+  function setTimer(selector: string, endtime: string) {
+    const timer: HTMLElement = document.querySelector(selector)
+    const days: HTMLElement = timer.querySelector('#days')
+    const hours: HTMLElement = timer.querySelector('#hours')
+    const minutes: HTMLElement = timer.querySelector('#minutes')
+    const seconds: HTMLElement = timer.querySelector('#seconds')
 
-    const timerInterval: any = setInterval(updateTimer, 1000)
+    const timerInterval = setInterval(updateTimer, 1000)
 
     updateTimer()
 
-    function updateTimer(): void {
-      const timeNow: any = getTimeRemaining(endtime)
+    function updateTimer() {
+      const timeNow = getTimeRemaining(endtime)
 
       days.innerHTML = insertZeroIntoTimer(timeNow.days)
       hours.innerHTML = insertZeroIntoTimer(timeNow.hours)
@@ -90,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalWindow: HTMLElement = document.querySelector('.modal')
   const modalCloseButton: HTMLElement = document.querySelector('[data-close]')
 
-  modalWindowTrigger.forEach((btn: HTMLButtonElement): void => {
+  modalWindowTrigger.forEach((btn: HTMLButtonElement) => {
     btn.addEventListener('click', () => {
       modalWindow.classList.add('show')
       modalWindow.classList.remove('hide')
@@ -98,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  function closeModalWindow(): void {
+  function closeModalWindow() {
     modalWindow.classList.remove('show')
     modalWindow.classList.add('hide')
     document.body.style.overflow = ''
