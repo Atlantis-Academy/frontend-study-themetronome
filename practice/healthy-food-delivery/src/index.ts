@@ -87,19 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalWindow: HTMLElement = document.querySelector('.modal')
   const modalCloseButton: HTMLElement = document.querySelector('[data-close]')
 
-  modalWindowTrigger.forEach((btn: HTMLButtonElement) => {
-    btn.addEventListener('click', () => {
-      modalWindow.classList.add('show')
-      modalWindow.classList.remove('hide')
-      document.body.style.overflow = 'hidden'
-    })
-  })
+  function openModalWindow() {
+    modalWindow.classList.add('show')
+    modalWindow.classList.remove('hide')
+    document.body.style.overflow = 'hidden'
+
+    clearInterval(modalWindowTimer)
+  }
 
   function closeModalWindow() {
     modalWindow.classList.remove('show')
     modalWindow.classList.add('hide')
     document.body.style.overflow = ''
   }
+
+  modalWindowTrigger.forEach((btn: HTMLButtonElement) => {
+    btn.addEventListener('click', () => openModalWindow)
+  })
 
   modalCloseButton.addEventListener('click', () => closeModalWindow())
 
@@ -110,4 +114,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e: KeyboardEvent) =>
     e.code === 'Escape' && modalWindow.classList.contains('show') ? closeModalWindow() : null
   )
+
+  const modalWindowTimer: ReturnType<typeof setTimeout> = setTimeout(openModalWindow, 3000)
+
+  function showModalWindowAfterScrolling() {
+    if (
+      window.pageYOffset + document.documentElement.clientHeight >=
+      document.documentElement.scrollHeight
+    ) {
+      openModalWindow()
+      window.removeEventListener('scroll', showModalWindowAfterScrolling)
+    }
+  }
+
+  window.addEventListener('scroll', showModalWindowAfterScrolling)
 })
