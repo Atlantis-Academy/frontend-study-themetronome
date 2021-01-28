@@ -142,7 +142,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     parentSelector: HTMLElement
 
+    classes: string[]
+
     currency: number
+
+    element: string
 
     constructor(
       imgSrc: string,
@@ -150,7 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
       title: string,
       description: string,
       price: number,
-      parentSelector: string
+      parentSelector: string,
+      ...classes: string[]
     ) {
       this.imgSrc = imgSrc
       this.alt = alt
@@ -158,8 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
       this.description = description
       this.price = price
       this.parentSelector = document.querySelector(parentSelector)
+      this.classes = classes
       this.currency = 75
       this.convertCurrency()
+      this.element = 'menu__item'
     }
 
     convertCurrency() {
@@ -168,8 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     render() {
       const element: HTMLElement = document.createElement('div')
+
+      if (this.classes.length === 0) {
+        element.classList.add(this.element)
+      } else {
+        this.classes.forEach((className) => element.classList.add(className))
+      }
+
       element.innerHTML = `
-        <div class="menu__item">
           <img src=${this.imgSrc} alt=${this.alt}>
           <h3 class="menu__item-subtitle">${this.title}</h3>
           <div class="menu__item-descr">${this.description}</div>
@@ -178,7 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="menu__item-cost">Цена:</div>
             <div class="menu__item-total"><span>${this.price}</span> руб/день</div>
           </div>
-        </div>
       `
       this.parentSelector.append(element)
     }
@@ -192,7 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
   фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким
   качеством!`,
     10,
-    '.menu .container'
+    '.menu .container',
+    'menu__item'
   ).render()
 
   new MenuCard(
@@ -202,7 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `В меню “Премиум” мы используем не только красивый дизайн упаковки, но и
     качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!`,
     18,
-    '.menu .container'
+    '.menu .container',
+    'menu__item'
   ).render()
 
   new MenuCard(
@@ -213,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет
     тофу и импортных вегетарианских стейков.`,
     22,
-    '.menu .container'
+    '.menu .container',
+    'menu__item'
   ).render()
 })
