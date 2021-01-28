@@ -159,10 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
       this.price = price
       this.parentSelector = document.querySelector(parentSelector)
       this.currency = 75
-      this.convertToRUB()
+      this.convertCurrency()
     }
 
-    convertToRUB() {
+    convertCurrency() {
       this.price *= this.currency
     }
 
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   new MenuCard(
     '../src/assets/img/tabs/vegy.jpg',
-    'vegy',
+    'fitness',
     `Меню "Фитнес"`,
     `Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и
   фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   new MenuCard(
     '../src/assets/img/tabs/elite.jpg',
-    'elite',
+    'premium',
     `Меню “Премиум”`,
     `В меню “Премиум” мы используем не только красивый дизайн упаковки, но и
     качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!`,
