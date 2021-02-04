@@ -1,7 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
   const tabs: NodeListOf<Element> = document.querySelectorAll('.tabheader__item')
   const tabsContent: NodeListOf<Element> = document.querySelectorAll('.tabcontent')
+  const forms: NodeListOf<Element> = document.querySelectorAll('form')
   const tabsParent: HTMLElement = document.querySelector('.tabheader__items')
+
+  const responseMessage = {
+    loading: 'Загрузка',
+    success: 'Спасибо! Скоро мы с вами свяжемся',
+    error: 'Что-то пошло не так',
+  }
 
   function makeTabContentHidden() {
     tabsContent.forEach((item: HTMLElement) => {
@@ -230,4 +237,40 @@ document.addEventListener('DOMContentLoaded', () => {
     '.menu .container',
     'menu__item'
   ).render()
+
+  function sendFormData(form: HTMLFormElement) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault()
+
+      const statusMessage: HTMLDivElement = document.createElement('div')
+      statusMessage.classList.add('status')
+      statusMessage.textContent = responseMessage.loading
+      form.append(statusMessage)
+
+      const request: XMLHttpRequest = new XMLHttpRequest()
+
+      request.open('POST', 'http://localhost:8000/')
+
+      request.setRequestHeader('Content-Type', 'application/json')
+      const formData: FormData = new FormData(form)
+
+      const dataFromInputs: Object = {}
+      formData.forEach((value, key) => {
+        dataFromInputs[key] = value
+      })
+
+      const formDataToJSON: string | FormData = JSON.stringify(dataFromInputs)
+
+      request.send(formDataToJSON)
+      request.addEventListener('load', () => {
+        if (request.status === 200) {
+          statusMessage.textContent = responseMessage.success
+        } else {
+          statusMessage.textContent = responseMessage.error
+        }
+      })
+    })
+  }
+
+  forms.forEach((item: HTMLFormElement) => sendFormData(item))
 })
