@@ -249,11 +249,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const request: XMLHttpRequest = new XMLHttpRequest()
 
-      request.open('POST', 'http://localhost:8000/')
-
+      request.open('POST', 'https://jsonplaceholder.typicode.com/users')
       request.setRequestHeader('Content-Type', 'application/json')
-      const formData: FormData = new FormData(form)
 
+      const formData: FormData = new FormData(form)
       const dataFromInputs: Object = {}
       formData.forEach((value, key) => {
         dataFromInputs[key] = value
@@ -263,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       request.send(formDataToJSON)
       request.addEventListener('load', () => {
-        if (request.status === 200) {
+        if (request.status === 201) {
           statusMessage.textContent = responseMessage.success
         } else {
           statusMessage.textContent = responseMessage.error
