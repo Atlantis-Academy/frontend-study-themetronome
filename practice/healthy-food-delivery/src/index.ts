@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tabsParent: HTMLElement = document.querySelector('.tabheader__items')
 
   const responseMessage = {
-    loading: 'Загрузка',
+    loading: '../src/assets/form/spinner.svg',
     success: 'Спасибо! Скоро мы с вами свяжемся',
     error: 'Что-то пошло не так',
   }
@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modalWindowTrigger: NodeListOf<Element> = document.querySelectorAll('[data-modal]')
   const modalWindow: HTMLElement = document.querySelector('.modal')
-  const modalCloseButton: HTMLElement = document.querySelector('[data-close]')
 
   function openModalWindow() {
     modalWindow.classList.add('show')
@@ -109,13 +108,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   modalWindowTrigger.forEach((btn: HTMLButtonElement) => {
-    btn.addEventListener('click', () => openModalWindow)
+    btn.addEventListener('click', () => openModalWindow())
   })
 
-  modalCloseButton.addEventListener('click', () => closeModalWindow())
-
   modalWindow.addEventListener('click', (e: Event) =>
-    e.target === modalWindow ? closeModalWindow() : null
+    e.target === modalWindow || (e.target as HTMLElement).getAttribute('data-close')
+      ? closeModalWindow()
+      : null
   )
 
   document.addEventListener('keydown', (e: KeyboardEvent) =>
@@ -242,9 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (event) => {
       event.preventDefault()
 
-      const statusMessage: HTMLDivElement = document.createElement('div')
-      statusMessage.classList.add('status')
-      statusMessage.textContent = responseMessage.loading
+      const statusMessage: HTMLImageElement = document.createElement('img')
+      statusMessage.setAttribute('src', responseMessage.loading)
+      statusMessage.style.cssText = `
+        display: block;
+        margin: 0 auto;
+      `
       form.append(statusMessage)
 
       const request: XMLHttpRequest = new XMLHttpRequest()
@@ -263,13 +265,38 @@ document.addEventListener('DOMContentLoaded', () => {
       request.send(formDataToJSON)
       request.addEventListener('load', () => {
         if (request.status === 201) {
-          statusMessage.textContent = responseMessage.success
+          showThanksModal(responseMessage.success)
         } else {
-          statusMessage.textContent = responseMessage.error
+          showThanksModal(responseMessage.error)
         }
       })
     })
   }
 
   forms.forEach((item: HTMLFormElement) => sendFormData(item))
+
+  function showThanksModal(statusMessage) {
+    const formsModal = document.querySelector('.modal__dialog')
+    formsModal.classList.add('hide')
+
+    openModalWindow()
+
+    const thanksModal = document.createElement('div')
+    thanksModal.classList.add('modal__dialog')
+    thanksModal.innerHTML = `
+      <div class="modal__content">
+        <div class="modal__close" data-close>&times;</div>
+        <div class="modal__title">${statusMessage}</div>
+      </div>
+    `
+
+    document.querySelector('.modal').append(thanksModal)
+    setTimeout(() => {
+      thanksModal.remove()
+      formsModal.classList.add('show')
+      formsModal.classList.remove('hide')
+
+      closeModalWindow()
+    }, 5000)
+  }
 })
