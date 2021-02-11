@@ -249,39 +249,43 @@ document.addEventListener('DOMContentLoaded', () => {
       `
       form.append(statusMessage)
 
-      const request: XMLHttpRequest = new XMLHttpRequest()
-
-      request.open('POST', 'https://jsonplaceholder.typicode.com/users')
-      request.setRequestHeader('Content-Type', 'application/json')
-
       const formData: FormData = new FormData(form)
       const dataFromInputs: Object = {}
+
       formData.forEach((value, key) => {
         dataFromInputs[key] = value
       })
 
-      const formDataToJSON: string | FormData = JSON.stringify(dataFromInputs)
-
-      request.send(formDataToJSON)
-      request.addEventListener('load', () => {
-        if (request.status === 201) {
-          showThanksModal(responseMessage.success)
-        } else {
-          showThanksModal(responseMessage.error)
-        }
+      fetch('https://jsonplaceholder.typicode.com/users/1', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(dataFromInputs),
       })
+        .then((data) => data.text())
+        .then(() => {
+          showThanksModal(responseMessage.success)
+          statusMessage.remove()
+        })
+        .catch(() => {
+          showThanksModal(responseMessage.error)
+        })
+        .finally(() => {
+          form.reset()
+        })
     })
   }
 
   forms.forEach((item: HTMLFormElement) => sendFormData(item))
 
-  function showThanksModal(statusMessage) {
-    const formsModal = document.querySelector('.modal__dialog')
+  function showThanksModal(statusMessage: string) {
+    const formsModal: HTMLElement = document.querySelector('.modal__dialog')
     formsModal.classList.add('hide')
 
     openModalWindow()
 
-    const thanksModal = document.createElement('div')
+    const thanksModal: HTMLDivElement = document.createElement('div')
     thanksModal.classList.add('modal__dialog')
     thanksModal.innerHTML = `
       <div class="modal__content">
