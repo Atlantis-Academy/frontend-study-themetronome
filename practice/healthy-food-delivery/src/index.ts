@@ -286,6 +286,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5000)
   }
 
+  const slider: HTMLElement = document.querySelector('.offer__slider')
+  slider.style.position = 'relative'
+
   const offerSlides: NodeListOf<HTMLElement> = document.querySelectorAll('.offer__slide')
   const previousSlide: HTMLElement = document.querySelector('.offer__slider-prev')
   const nextSlide: HTMLElement = document.querySelector('.offer__slider-next')
@@ -323,15 +326,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function incrementSlide(item) {
+  function incrementSlide(item: number) {
     showSlide((currentSlideIndex += item))
+  }
+
+  const indicators: HTMLOListElement = document.createElement('ol')
+  const paginationDots = []
+
+  indicators.classList.add('pagination-dots')
+  indicators.style.cssText = `
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 15;
+    display: flex;
+    justify-content: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+  `
+
+  slider.append(indicators)
+  for (let i = 0; i < offerSlides.length; i += 1) {
+    const dotItem = document.createElement('li')
+    dotItem.setAttribute('handle-slide', (i + 1).toString())
+    dotItem.style.cssText = `
+      box-sizing: content-box;
+      flex: 0 1 auto;
+      width: 30px;
+      height: 6px;
+      margin-right: 3px;
+      margin-left: 3px;
+      cursor: pointer;
+      background-color: #fff;
+      background-clip: padding-box;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      opacity: .5;
+      transition: opacity .6s ease;
+    `
+
+    if (i === 0) {
+      dotItem.style.opacity = '1'
+    }
+
+    indicators.append(dotItem)
+    paginationDots.push(dotItem)
+  }
+
+  function changeColorBullet() {
+    paginationDots.forEach((dot) => (dot.style.opacity = '.5'))
+    paginationDots[currentSlideIndex - 1].style.opacity = 1
   }
 
   previousSlide.addEventListener('click', () => {
     incrementSlide(-1)
+
+    changeColorBullet()
   })
 
   nextSlide.addEventListener('click', () => {
     incrementSlide(1)
+
+    changeColorBullet()
   })
 })
