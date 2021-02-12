@@ -285,4 +285,53 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModalWindow()
     }, 5000)
   }
+
+  const offerSlides: NodeListOf<HTMLElement> = document.querySelectorAll('.offer__slide')
+  const previousSlide: HTMLElement = document.querySelector('.offer__slider-prev')
+  const nextSlide: HTMLElement = document.querySelector('.offer__slider-next')
+  const totalSlides: HTMLElement = document.querySelector('#total')
+  const currentSlide = document.querySelector('#current')
+  let currentSlideIndex: number = 1
+
+  showSlide(currentSlideIndex)
+  currentSlideCounter()
+
+  function currentSlideCounter() {
+    if (offerSlides.length < 10) {
+      totalSlides.textContent = `0${offerSlides.length}`
+    } else {
+      totalSlides.textContent = offerSlides.length.toString()
+    }
+  }
+
+  function showSlide(index) {
+    if (index > offerSlides.length) {
+      currentSlideIndex = 1
+    }
+
+    if (index < 1) {
+      currentSlideIndex = offerSlides.length
+    }
+
+    offerSlides.forEach((item) => (item.style.display = 'none'))
+    offerSlides[currentSlideIndex - 1].style.display = 'block'
+
+    if (offerSlides.length < 10) {
+      currentSlide.textContent = `0${currentSlideIndex}`
+    } else {
+      currentSlide.textContent = currentSlideIndex.toString()
+    }
+  }
+
+  function incrementSlide(item) {
+    showSlide((currentSlideIndex += item))
+  }
+
+  previousSlide.addEventListener('click', () => {
+    incrementSlide(-1)
+  })
+
+  nextSlide.addEventListener('click', () => {
+    incrementSlide(1)
+  })
 })
