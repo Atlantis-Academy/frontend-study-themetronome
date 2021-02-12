@@ -202,42 +202,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  new MenuCard(
-    '../src/assets/img/tabs/vegy.jpg',
-    'fitness',
-    `Меню "Фитнес"`,
-    `Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и
-  фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким
-  качеством!`,
-    10,
-    '.menu .container',
-    'menu__item'
-  ).render()
+  async function getDataFromDb(url: string) {
+    const result: Response = await fetch(url)
 
-  new MenuCard(
-    '../src/assets/img/tabs/elite.jpg',
-    'premium',
-    `Меню “Премиум”`,
-    `В меню “Премиум” мы используем не только красивый дизайн упаковки, но и
-    качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!`,
-    18,
-    '.menu .container',
-    'menu__item'
-  ).render()
+    if (!result.ok) {
+      throw new Error(`Couldn't fetch ${url}, status: ${result.status}`)
+    }
 
-  new MenuCard(
-    '../src/assets/img/tabs/post.jpg',
-    'post',
-    `Меню "Постное"`,
-    `Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов
-    животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет
-    тофу и импортных вегетарианских стейков.`,
-    22,
-    '.menu .container',
-    'menu__item'
-  ).render()
+    return result.json()
+  }
 
-  function sendFormData(form: HTMLFormElement) {
+  getDataFromDb('http://localhost:3000/menu').then((data) => {
+    data.forEach(({ imgSrc, alt, title, description, price }) => {
+      new MenuCard(imgSrc, alt, title, description, price, '.menu .container').render()
+    })
+  })
+
+  async function sendFormData(url: string, data: string) {
+    const result: Response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data,
+    })
+
+    return result.json()
+  }
+
+  function handleFormData(form: HTMLFormElement) {
     form.addEventListener('submit', (event) => {
       event.preventDefault()
 
@@ -250,20 +243,9 @@ document.addEventListener('DOMContentLoaded', () => {
       form.append(statusMessage)
 
       const formData: FormData = new FormData(form)
-      const dataFromInputs: Object = {}
+      const toJSON = JSON.stringify(Object.fromEntries(formData.entries()))
 
-      formData.forEach((value, key) => {
-        dataFromInputs[key] = value
-      })
-
-      fetch('https://jsonplaceholder.typicode.com/users/1', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(dataFromInputs),
-      })
-        .then((data) => data.text())
+      sendFormData('http://localhost:3000/requests/', toJSON)
         .then(() => {
           showThanksModal(responseMessage.success)
           statusMessage.remove()
@@ -277,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  forms.forEach((item: HTMLFormElement) => sendFormData(item))
+  forms.forEach((item: HTMLFormElement) => handleFormData(item))
 
   function showThanksModal(statusMessage: string) {
     const formsModal: HTMLElement = document.querySelector('.modal__dialog')
