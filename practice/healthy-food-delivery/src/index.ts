@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return result.json()
   }
 
-  getDataFromDb('http://localhost:3000/menu').then((data) => {
+  getDataFromDb('https://6027afc0dd4afd001754a9b0.mockapi.io/api/menu').then((data) => {
     data.forEach(({ imgSrc, alt, title, description, price }) => {
       new MenuCard(imgSrc, alt, title, description, price, '.menu .container').render()
     })
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData: FormData = new FormData(form)
       const toJSON = JSON.stringify(Object.fromEntries(formData.entries()))
 
-      sendFormData('http://localhost:3000/requests/', toJSON)
+      sendFormData('https://6027afc0dd4afd001754a9b0.mockapi.io/api/users', toJSON)
         .then(() => {
           showThanksModal(responseMessage.success)
           statusMessage.remove()
