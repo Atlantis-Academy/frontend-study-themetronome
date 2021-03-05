@@ -7,15 +7,16 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "cra-template": "^1.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "tsc config-overrides.ts && react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -31,7 +32,10 @@
     ]
   },
   "devDependencies": {
+    "@components/app": "^0.0.0",
+    "customize-cra": "^1.0.0",
     "eslint-config-prettier": "^8.0.0",
-    "eslint-import-resolver-typescript": "^2.4.0"
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "react-app-rewired": "^2.1.8"
   }
 }

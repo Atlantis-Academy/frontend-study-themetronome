@@ -1,0 +1,12 @@
+{
+  "name": "@components/todo-list",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@components/todo-list-item": "^0.0.0"
+  },
+  "dependencies": {
+    "react": "^17.0.1"
+  }
+}
