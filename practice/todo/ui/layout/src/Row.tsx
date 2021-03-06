@@ -1,5 +1,3 @@
-import React from 'react'
-
-export const Row: React.FC<{ className: string }> = ({ children }) => {
-  return <span>{children}</span>
+export const Row = ({ className, children }) => {
+  return <span className={className}>{children}</span>
 }

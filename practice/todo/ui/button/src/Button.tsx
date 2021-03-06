@@ -1,5 +1,7 @@
-import React from 'react'
-
-export const Button: React.FC<{ className: string }> = ({ children }) => {
-  return <button type="button">{children}</button>
+export const Button = ({ children, className = null, type = null }) => {
+  return (
+    <button className={className} type={type}>
+      {children}
+    </button>
+  )
 }

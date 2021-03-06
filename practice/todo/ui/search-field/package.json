@@ -1,0 +1,9 @@
+{
+  "name": "@ui/search-field",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@ui/input": "^0.0.0"
+  }
+}

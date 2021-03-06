@@ -7,6 +7,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "bootstrap": "^4.6.0",
     "cra-template": "^1.1.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -32,10 +33,10 @@
     ]
   },
   "devDependencies": {
-    "@components/app": "^0.0.0",
     "customize-cra": "^1.0.0",
     "eslint-config-prettier": "^8.0.0",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.8",
+    "@ui/app": "^0.0.0"
   }
 }

@@ -1,5 +1,3 @@
-import React from 'react'
-
-export const Box: React.FC<{ className: string }> = ({ children }) => {
-  return <div>{children}</div>
+export const Box = ({ className, children }) => {
+  return <div className={className}>{children}</div>
 }
