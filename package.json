@@ -2,7 +2,7 @@
   "license": "BSD 3-Clause",
   "private": true,
   "scripts": {
-    "lint": "./node_modules/.bin/eslint --fix './**/*.{ts,js}'"
+    "lint": "./node_modules/.bin/eslint --fix './**/*.{ts,js,tsx,jsx}'"
   },
   "devDependencies": {
     "@atlantis-lab/tsconfig": "^0.1.2",
@@ -13,6 +13,7 @@
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "husky": "^4.3.8",
     "lerna": "3.22.1",
     "lint-staged": "^10.5.3",
@@ -25,7 +26,7 @@
     }
   },
   "lint-staged": {
-    "./**/*.{ts,js}": "eslint --fix"
+    "./**/*.{ts,js,tsx,jsx}": "eslint --fix"
   },
   "workspaces": [
     "lessons/**/*",

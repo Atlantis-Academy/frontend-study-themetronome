@@ -1,0 +1,12 @@
+{
+  "extends": "../../.eslintrc.json",
+  "rules": {
+    "no-use-before-define": 0,
+    "import/extensions": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": "./src/**/*"
+    }
+  }
+}

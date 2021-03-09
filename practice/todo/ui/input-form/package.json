@@ -1,0 +1,10 @@
+{
+  "name": "@ui/input-form",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "@ui/button": "^0.0.0",
+    "@ui/input": "^0.0.0"
+  }
+}
