@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   run:
-    name: Run
+    name: codelinter
     runs-on: ubuntu-latest
 
     steps:
