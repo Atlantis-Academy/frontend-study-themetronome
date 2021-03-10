@@ -1,11 +1,10 @@
-import menuTabs from './modules/menuTabs'
-import countdownTimer from './modules/countdownTimer'
-import userDataModal from './modules/userDataModal'
-import offerMenuCards from './modules/offerMenuCards'
-import formFields from './modules/formFields'
-import productsSlider from './modules/productsSlider'
-import caloriesCalculator from './modules/caloriesCalculator'
-
+import caloriesCalculator   from './modules/caloriesCalculator'
+import countdownTimer       from './modules/countdownTimer'
+import formFields           from './modules/formFields'
+import menuTabs             from './modules/menuTabs'
+import offerMenuCards       from './modules/offerMenuCards'
+import productsSlider       from './modules/productsSlider'
+import userDataModal        from './modules/userDataModal'
 import { modalWindowTimer } from './utils/modalWindowTimer'
 
 document.addEventListener('DOMContentLoaded', () => {

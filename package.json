@@ -2,7 +2,9 @@
   "license": "BSD 3-Clause",
   "private": true,
   "scripts": {
-    "lint": "actl lint --fix"
+    "lint": "actl lint --fix",
+    "commit": "actl commit",
+    "typecheck": "actl typecheck"
   },
   "devDependencies": {
     "@atlantis-lab/actl": "^0.4.25",
@@ -12,7 +14,10 @@
     "typescript": "^4.1.3"
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-commit": "actl lint",
+      "commit-msg": "actl commitmsg"
+    }
   },
   "workspaces": [
     "lessons/**/*",

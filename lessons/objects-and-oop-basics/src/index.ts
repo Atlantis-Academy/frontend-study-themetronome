@@ -1,3 +1,5 @@
+/* eslint-disable no-alert, no-console */
+
 const personalMovieDB = {
   count: 0,
   movies: {},
@@ -13,7 +15,7 @@ const personalMovieDB = {
   },
 
   lastSeenMovieRate() {
-    for (let i: number = 0; i < 2; i++) {
+    for (let i: number = 0; i < 2; i += 1) {
       const filmName: string = prompt('Один из последних просмотренных фильмов?', '')
       const filmGrade: number = +prompt('Какую оценку вы бы ему поставили?', '')
 
@@ -26,7 +28,7 @@ const personalMovieDB = {
       ) {
         personalMovieDB.movies[filmName] = filmGrade
       } else {
-        i--
+        i -= 1
       }
     }
   },
@@ -50,12 +52,12 @@ const personalMovieDB = {
   },
 
   writeYourGenres() {
-    for (let i: number = 1; i <= 3; i++) {
+    for (let i: number = 1; i <= 3; i += 1) {
       const genre: string = prompt(`Ваш любимый жанр под номером ${i}?`).toLowerCase()
 
       if (genre === '' || genre == null) {
         console.log('Вы ввели некорректные данные или не ввели их вовсе')
-        i--
+        i -= 1
       } else {
         personalMovieDB.genres[i - 1] = genre
       }

@@ -1,3 +1,5 @@
+/* eslint-disable no-alert, no-console */
+
 let numberOfFilms: number = +prompt('Сколько фильмов вы уже посмотрели?', '')
 
 const personalMovieDB = {
@@ -17,7 +19,7 @@ const totalWatchedMoviesCheck = () => {
 totalWatchedMoviesCheck()
 
 function lastSeenMovieRate() {
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 2; i += 1) {
     const filmName: string = prompt('Один из последних просмотренных фильмов?', '')
     const filmGrade: number = +prompt('Какую оценку вы бы ему поставили?', '')
 
@@ -30,7 +32,7 @@ function lastSeenMovieRate() {
     ) {
       personalMovieDB.movies[filmName] = filmGrade
     } else {
-      i--
+      i += 1
     }
   }
 }
@@ -56,7 +58,7 @@ const showMyDB = () => (personalMovieDB.private === false ? console.log(personal
 showMyDB()
 
 function writeYourGenres() {
-  for (let i: number = 1; i <= 3; i++) {
+  for (let i: number = 1; i <= 3; i += 1) {
     personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр №${i}?`)
   }
 }

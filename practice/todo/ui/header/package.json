@@ -2,5 +2,8 @@
   "name": "@ui/header",
   "version": "0.0.0",
   "main": "src/index.tsx",
-  "license": "BSD-3-Clause"
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "react": "^17.0.1"
+  }
 }

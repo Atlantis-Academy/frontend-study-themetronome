@@ -25,10 +25,13 @@ function countdownTimer(id: string, deadline: string) {
     const hours: HTMLElement = timer.querySelector('#hours')
     const minutes: HTMLElement = timer.querySelector('#minutes')
     const seconds: HTMLElement = timer.querySelector('#seconds')
+    const timerInterval: number = 1000
 
-    const timerInterval = setInterval(updateTimer, 1000)
-
-    updateTimer()
+    function disableTimer(currentTime, interval) {
+      if (currentTime <= 0) {
+        clearInterval(interval)
+      }
+    }
 
     function updateTimer() {
       const timeNow = getTimeRemaining(endtime)
@@ -38,10 +41,13 @@ function countdownTimer(id: string, deadline: string) {
       minutes.innerHTML = insertZeroIntoTimer(timeNow.minutes)
       seconds.innerHTML = insertZeroIntoTimer(timeNow.seconds)
 
-      if (timeNow.total <= 0) {
-        clearInterval(timerInterval)
-      }
+      disableTimer(timeNow.total, timerInterval)
     }
+
+    const makeTimerAlive = () => setInterval(updateTimer, timerInterval)
+
+    updateTimer()
+    makeTimerAlive()
   }
 
   setTimer(id, deadline)

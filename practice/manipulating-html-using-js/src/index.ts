@@ -32,3 +32,8 @@ function getMoviesListFromDB() {
   `
   })
 }
+
+removeAdvertisements()
+changeGenreCategory('horror')
+changeMovieBackground('./assets/images/bg.jpg')
+getMoviesListFromDB()
