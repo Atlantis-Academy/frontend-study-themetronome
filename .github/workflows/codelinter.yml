@@ -3,7 +3,7 @@ name: codelinter
 on: pull_request
 
 jobs:
-  run:
+  lint:
     name: codelinter
     runs-on: ubuntu-latest
 
@@ -19,5 +19,5 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint
+      - name: Run lint
         run: yarn lint
