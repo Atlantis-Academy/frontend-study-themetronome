@@ -4,7 +4,10 @@
   "main": "src/index.tsx",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "@ui/layout": "^0.0.0",
-    "@ui/button": "^0.0.0"
+    "@ui/button": "^0.0.0",
+    "@ui/layout": "^0.0.0"
+  },
+  "dependencies": {
+    "react": "^17.0.1"
   }
 }

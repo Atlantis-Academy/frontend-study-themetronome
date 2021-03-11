@@ -1,5 +1,5 @@
-import { openModalWindow, closeModalWindow } from './userDataModal'
-import { sendFormData } from '../services/postData'
+import { sendFormData }                      from '../services/postData'
+import { closeModalWindow, openModalWindow } from './userDataModal'
 
 function formFields(formSelector: string, timer: number) {
   const forms: NodeListOf<Element> = document.querySelectorAll(formSelector)
@@ -10,8 +10,33 @@ function formFields(formSelector: string, timer: number) {
     error: 'Что-то пошло не так',
   }
 
+  function showThanksModal(statusMessage: string) {
+    const formsModal: HTMLElement = document.querySelector('.modal__dialog')
+    formsModal.classList.add('hide')
+
+    openModalWindow('.modal', timer)
+
+    const thanksModal: HTMLDivElement = document.createElement('div')
+    thanksModal.classList.add('modal__dialog')
+    thanksModal.innerHTML = `
+      <div class="modal__content">
+        <div class="modal__close" data-close>&times;</div>
+        <div class="modal__title">${statusMessage}</div>
+      </div>
+    `
+
+    document.querySelector('.modal').append(thanksModal)
+    setTimeout(() => {
+      thanksModal.remove()
+      formsModal.classList.add('show')
+      formsModal.classList.remove('hide')
+
+      closeModalWindow('.modal')
+    }, 5000)
+  }
+
   function handleFormData(form: HTMLFormElement) {
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', event => {
       event.preventDefault()
 
       const statusMessage: HTMLImageElement = document.createElement('img')
@@ -40,31 +65,6 @@ function formFields(formSelector: string, timer: number) {
   }
 
   forms.forEach((item: HTMLFormElement) => handleFormData(item))
-
-  function showThanksModal(statusMessage: string) {
-    const formsModal: HTMLElement = document.querySelector('.modal__dialog')
-    formsModal.classList.add('hide')
-
-    openModalWindow('.modal', timer)
-
-    const thanksModal: HTMLDivElement = document.createElement('div')
-    thanksModal.classList.add('modal__dialog')
-    thanksModal.innerHTML = `
-      <div class="modal__content">
-        <div class="modal__close" data-close>&times;</div>
-        <div class="modal__title">${statusMessage}</div>
-      </div>
-    `
-
-    document.querySelector('.modal').append(thanksModal)
-    setTimeout(() => {
-      thanksModal.remove()
-      formsModal.classList.add('show')
-      formsModal.classList.remove('hide')
-
-      closeModalWindow('.modal')
-    }, 5000)
-  }
 }
 
 export default formFields

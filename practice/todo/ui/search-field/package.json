@@ -5,5 +5,8 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@ui/input": "^0.0.0"
+  },
+  "dependencies": {
+    "react": "^17.0.1"
   }
 }

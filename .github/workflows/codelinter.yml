@@ -3,8 +3,7 @@ name: codelinter
 on: pull_request
 
 jobs:
-  run:
-    name: Run
+  codelinter:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +13,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: "14"
 
       - name: Install dependencies
         run: yarn install

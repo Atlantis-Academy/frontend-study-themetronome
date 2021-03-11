@@ -29,13 +29,13 @@ function userDataModal(triggerSelector: string, modalSelector: string, modalWind
   modalWindow.addEventListener('click', (e: Event) =>
     e.target === modalWindow || (e.target as HTMLElement).getAttribute('data-close')
       ? closeModalWindow(modalSelector)
-      : null
+      : null,
   )
 
   document.addEventListener('keydown', (e: KeyboardEvent) =>
     e.code === 'Escape' && modalWindow.classList.contains('show')
       ? closeModalWindow(modalSelector)
-      : null
+      : null,
   )
 
   function showModalWindowAfterScrolling() {

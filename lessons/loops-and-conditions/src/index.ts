@@ -1,3 +1,5 @@
+/* eslint-disable no-alert, no-console */
+
 const numberOfFilms: number = +prompt('Сколько фильмов вы уже посмотрели?', '')
 
 const personalMovieDB = {
@@ -8,7 +10,7 @@ const personalMovieDB = {
   private: false,
 }
 
-for (let i = 0; i < 2; i++) {
+for (let i = 0; i < 2; i += 1) {
   const filmName: string = prompt('Один из последних просмотренных Вами фильмов?', '')
   const filmGrade: number = +prompt('Какую оценку вы бы ему поставили?', '')
 
@@ -21,7 +23,7 @@ for (let i = 0; i < 2; i++) {
   ) {
     personalMovieDB.movies[filmName] = filmGrade
   } else {
-    i--
+    i -= 1
   }
 }
 

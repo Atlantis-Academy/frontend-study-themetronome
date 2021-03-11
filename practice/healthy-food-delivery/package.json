@@ -5,11 +5,9 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "webpack",
-    "compile": "tsc",
-    "lint": "eslint"
+    "compile": "tsc"
   },
   "devDependencies": {
-    "eslint-import-resolver-typescript": "^2.4.0",
     "ts-loader": "^8.0.17",
     "ts-node": "^9.1.1",
     "webpack": "^5.22.0",

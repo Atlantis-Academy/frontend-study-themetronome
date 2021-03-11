@@ -1,6 +1,8 @@
-export const Button = ({ children, className = null, type = null }) => {
+import React from 'react'
+
+export const Button = ({ children, className = null }) => {
   return (
-    <button className={className} type={type}>
+    <button className={className} type='button'>
       {children}
     </button>
   )

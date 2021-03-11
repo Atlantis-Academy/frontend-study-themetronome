@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 const employers: string[] = [
   'Alex',
   '',
@@ -13,12 +15,12 @@ const employers: string[] = [
 ]
 
 const employersNames: string[] = []
-for (let i: number = 0; i < employers.length; i++) {
+for (let i: number = 0; i < employers.length; i += 1) {
   if (employers[i].length > 0 && employers[i] !== '') {
     employersNames.push(employers[i])
   }
 }
-for (let i: number = 0; i < employersNames.length; i++) {
+for (let i: number = 0; i < employersNames.length; i += 1) {
   employersNames[i] = employersNames[i].toLowerCase().trim()
 }
 
@@ -30,7 +32,7 @@ const sponsors: { cash: number[]; eu: string[]; rus: string[] } = {
 
 function calcCash(own = 0, ...everyCash: (string | number)[][]) {
   let total = own
-  for (let i = 0; i < everyCash[1].length; i++) {
+  for (let i = 0; i < everyCash[1].length; i += 1) {
     total += +everyCash[1][i]
   }
   return total
@@ -41,7 +43,7 @@ const money = calcCash(...sponsors.cash)
 function makeBusiness(owner: string, director: string = 'Victor', cash: number, emp: string[]) {
   const sumSponsors = [...sponsors.eu, ...sponsors.rus, 'unexpected sponsor']
   console.log(
-    `We have a business. Owner: ${owner}, director: ${director}. Our budget: ${cash}. And our employers: ${emp}`
+    `We have a business. Owner: ${owner}, director: ${director}. Our budget: ${cash}. And our employers: ${emp}`,
   )
   console.log('And we have a sponsors: ')
   console.log(...sumSponsors)

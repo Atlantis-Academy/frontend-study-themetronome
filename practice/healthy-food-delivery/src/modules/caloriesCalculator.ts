@@ -23,7 +23,7 @@ function caloriesCalculator() {
   function initLocalSettings(selector: string, activeClass: string) {
     const elements: NodeListOf<HTMLElement> = document.querySelectorAll(selector)
 
-    elements.forEach((element) => {
+    elements.forEach(element => {
       element.classList.remove(activeClass)
       if (element.getAttribute('id') === localStorage.getItem('sex')) {
         element.classList.add(activeClass)
@@ -47,11 +47,11 @@ function caloriesCalculator() {
 
     if (sex === 'female') {
       calcResultValue.textContent = Math.round(
-        (447.6 + 9.2 * weightField + 3.1 * heightField - 4.3 * ageField) * ratio
+        (447.6 + 9.2 * weightField + 3.1 * heightField - 4.3 * ageField) * ratio,
       ).toString()
     } else {
       calcResultValue.textContent = Math.round(
-        (88.36 + 13.4 * weightField + 4.8 * heightField - 5.7 * ageField) * ratio
+        (88.36 + 13.4 * weightField + 4.8 * heightField - 5.7 * ageField) * ratio,
       ).toString()
     }
   }

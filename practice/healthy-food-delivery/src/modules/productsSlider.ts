@@ -26,9 +26,6 @@ function productsSlider({
 
   let currentSlideIndex: number = 1
 
-  showSlide(currentSlideIndex)
-  currentSlideCounter()
-
   function currentSlideCounter() {
     if (offerSlides.length < 10) {
       totalSlides.textContent = `0${offerSlides.length}`
@@ -36,6 +33,8 @@ function productsSlider({
       totalSlides.textContent = offerSlides.length.toString()
     }
   }
+
+  currentSlideCounter()
 
   function showSlide(index) {
     if (index > offerSlides.length) {
@@ -46,7 +45,11 @@ function productsSlider({
       currentSlideIndex = offerSlides.length
     }
 
-    offerSlides.forEach((item) => (item.style.display = 'none'))
+    offerSlides.forEach(item => {
+      let itemStyle = item.style.display
+      itemStyle = 'none'
+      return itemStyle
+    })
     offerSlides[currentSlideIndex - 1].style.display = 'block'
 
     if (offerSlides.length < 10) {
@@ -55,6 +58,8 @@ function productsSlider({
       currentSlide.textContent = currentSlideIndex.toString()
     }
   }
+
+  showSlide(currentSlideIndex)
 
   function incrementSlide(item: number) {
     showSlide((currentSlideIndex += item))
@@ -106,7 +111,12 @@ function productsSlider({
   }
 
   function changeColorBullet() {
-    paginationDots.forEach((dot) => (dot.style.opacity = '.5'))
+    paginationDots.forEach(dot => {
+      let dotOpacity = dot.style.opacity
+      dotOpacity = '.5'
+
+      return dotOpacity
+    })
     paginationDots[currentSlideIndex - 1].style.opacity = 1
   }
 
