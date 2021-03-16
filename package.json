@@ -4,8 +4,7 @@
   "scripts": {
     "lint": "actl lint",
     "commit": "actl commit",
-    "typecheck": "actl typecheck",
-    "format": "actl format"
+    "typecheck": "actl typecheck"
   },
   "devDependencies": {
     "@atlantis-lab/actl": "^0.4.27",
@@ -15,7 +14,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "actl precommit"
+      "pre-commit": "actl precommit",
+      "commit-msg": "actl commitmsg"
     }
   },
   "workspaces": [
