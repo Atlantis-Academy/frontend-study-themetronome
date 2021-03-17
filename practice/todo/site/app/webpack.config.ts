@@ -1,7 +1,5 @@
 import 'webpack-dev-server'
 
-export const mode = 'development'
-
 export const entry = ['./src/index']
 
 export const output = {
