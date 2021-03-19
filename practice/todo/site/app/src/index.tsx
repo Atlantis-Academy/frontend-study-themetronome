@@ -1,6 +1,6 @@
-import React                 from 'react'
-import ReactDOM              from 'react-dom'
+import React      from 'react'
+import { render } from 'react-dom'
 
-import { TestTodoComponent } from '@ui/test-todo-component'
+import { App }    from './App'
 
-ReactDOM.render(<TestTodoComponent />, document.getElementById('root'))
+render(<App />, document.getElementById('root'))
