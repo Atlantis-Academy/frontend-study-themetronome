@@ -1,9 +1,14 @@
 {
   "name": "@ui/button",
   "version": "0.0.0",
-  "main": "src/index.tsx",
+  "main": "src/index.ts",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "react": "^17.0.1"
+    "@emotion/styled": "^11.1.5",
+    "react": "^17.0.1",
+    "styled-system": "^5.1.5"
+  },
+  "devDependencies": {
+    "@types/styled-system": "^5.1.10"
   }
 }

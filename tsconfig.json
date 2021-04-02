@@ -1,4 +1,7 @@
 {
   "extends": "@atlantis-lab/tsconfig/tsconfig.base.json",
-  "include": ["lessons/**/*", "practice/**/*"]
+  "include": ["practice/**/*"],
+  "compilerOptions": {
+    "skipLibCheck": true
+  }
 }

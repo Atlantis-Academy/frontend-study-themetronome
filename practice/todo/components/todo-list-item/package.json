@@ -1,11 +1,12 @@
 {
   "name": "@components/todo-list-item",
   "version": "0.0.0",
-  "main": "src/index.tsx",
+  "main": "src/index.ts",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@ui/button": "^0.0.0",
-    "@ui/layout": "^0.0.0"
+    "@ui/layout": "^0.0.0",
+    "@ui/text": "^0.0.0"
   },
   "dependencies": {
     "react": "^17.0.1"
