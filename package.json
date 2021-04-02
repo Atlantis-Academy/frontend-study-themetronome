@@ -14,8 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "actl precommit",
-      "commit-msg": "actl commitmsg"
+      "pre-commit": "actl precommit"
     }
   },
   "workspaces": [

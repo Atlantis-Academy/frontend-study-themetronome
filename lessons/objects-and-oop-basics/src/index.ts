@@ -1,4 +1,5 @@
 /* eslint-disable no-alert, no-console */
+export {}
 
 const personalMovieDB = {
   count: 0,

@@ -1,4 +1,5 @@
 /* eslint-disable no-alert, no-console */
+export {}
 
 let numberOfFilms: number = +prompt('Сколько фильмов вы уже посмотрели?', '')
 
