@@ -1,3 +1,3 @@
 export interface TodoListItemProps {
-  children: string
+  children?: string
 }

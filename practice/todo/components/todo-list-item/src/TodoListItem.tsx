@@ -8,11 +8,15 @@ import { TodoListItemProps } from './types'
 
 export const TodoListItem: React.FC<TodoListItemProps> = ({ children }) => {
   return (
-    <Box position='relative' display='flex' mb='-1px' width='100%' justifyContent='space-between'>
+    <Box position='relative' display='flex' mb='1px' width='100%' justifyContent='space-between'>
       <Text>{children}</Text>
       <Row>
-        <Button type='button'>btn-logo</Button>
-        <Button type='button'>btn-logo</Button>
+        <Button type='button' backgroundColor='#f72100' width='100%' fontSize='10px'>
+          Удалить
+        </Button>
+        <Button type='button' backgroundColor='#f5c905' width='100%' fontSize='10px'>
+          В избранное
+        </Button>
       </Row>
     </Box>
   )

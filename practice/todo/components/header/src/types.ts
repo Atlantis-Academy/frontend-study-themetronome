@@ -1,4 +1,4 @@
 export interface HeaderProps {
   title: string
-  tasksCompletion: string
+  tasksStatus: string
 }
